@@ -30,3 +30,4 @@ while (( i++ < 10 )) {
     echo $password
     }
 print "\n"
+exit
