@@ -3,8 +3,11 @@ charset='[:alnum:]'
 
 # set default pasword length to 10 if not specified
 length=$1
-
-if [[ -n $length ]]
+if [[ $length = "h" || $length = "-h" || $length = "--h" || $length = "help" ]]
+then
+    echo "Usage: ./passgen.sh [length]"
+    exit
+elif [[ -n $length ]]
 then
     count=$length
 else
@@ -23,7 +26,7 @@ fi
 echo "\nGenerating 10 random $count character passwords using $charset: \n"
 i=0
 while (( i++ < 10 )) { 
-    password="$(cat /dev/urandom | LC_ALL=C tr -dc $charset | head -c$count)"
+    password="$(cat /dev/urandom | LC_ALL=C tr -dc $charset | head -c $count)"
     echo $password
     }
 print "\n"
